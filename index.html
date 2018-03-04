@@ -10,7 +10,7 @@
 
 <div class="container mt-4">
 
-    <div id="todoApp" class="row"></div>
+    <div id="todoApp"></div>
 
 </div>
 
@@ -19,6 +19,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
 
 <script type="text/babel">
+
+    // Uses bootstrap v4 styles
 
     var Todo = React.createClass({
         edit: function(){
@@ -29,8 +31,8 @@
         },
         render: function() {
             return (
-                    <div className="col-4 border pb-2">
-                        <div className="todoText mb-3 mt-2">Todo</div>
+                    <div className="col-lg-4 border pb-2">
+                        <div className="todoText mb-3 mt-2">{this.props.children}</div>
                         <hr/>
                         <button onClick={this.edit} className="btn btn-primary">Edit</button>
                         <button onClick={this.delete} className="btn btn-danger ml-1">Delete</button>
@@ -39,7 +41,14 @@
         }
     });
 
-    ReactDOM.render(<Todo/>, document.getElementById('todoApp'));
+    ReactDOM.render(
+            <div className="row">
+                <Todo>Get Milk</Todo>
+                <Todo>Get Bread</Todo>
+                <Todo>Get Eggs</Todo>
+            </div>,
+            document.getElementById('todoApp')
+    );
 
 </script>
 
