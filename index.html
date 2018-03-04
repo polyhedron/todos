@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>polyhedron's react tutorial</title>
+    <script src="https://fb.me/react-0.14.3.js"></script>
+    <script src="https://fb.me/react-dom-0.14.3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+</head>
+<body>
+
+<div id="todoApp"></div>
+
+<script type="text/babel">
+
+    var PolyhedronsComponent = React.createClass({
+        render: function() {
+            return (
+                    <h1>I am polyhedron</h1>
+            );
+        }
+    });
+
+    ReactDOM.render(<PolyhedronsComponent/>, document.getElementById('todoApp'));
+
+</script>
+
+</body>
+</html>
