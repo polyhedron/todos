@@ -21,13 +21,19 @@
 <script type="text/babel">
 
     var Todo = React.createClass({
+        edit: function(){
+            alert('Edit Button Clicked');
+        },
+        delete:function(){
+            alert('Delete Button Clicked');
+        },
         render: function() {
             return (
                     <div className="col-4 border pb-2">
                         <div className="todoText mb-3 mt-2">Todo</div>
                         <hr/>
-                        <button className="btn btn-primary">Edit</button>
-                        <button className="btn btn-danger ml-1">Delete</button>
+                        <button onClick={this.edit} className="btn btn-primary">Edit</button>
+                        <button onClick={this.delete} className="btn btn-danger ml-1">Delete</button>
                     </div>
             );
         }
