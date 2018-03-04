@@ -10,7 +10,7 @@
 
 <div class="container mt-4">
 
-    <div id="todoApp"></div>
+    <div id="todoApp" class="row"></div>
 
 </div>
 
@@ -20,15 +20,20 @@
 
 <script type="text/babel">
 
-    var PolyhedronsComponent = React.createClass({
+    var Todo = React.createClass({
         render: function() {
             return (
-                    <h1>I am polyhedron</h1>
+                    <div className="col-4 border pb-2">
+                        <div className="todoText mb-3 mt-2">Todo</div>
+                        <hr/>
+                        <button className="btn btn-primary">Edit</button>
+                        <button className="btn btn-danger ml-1">Delete</button>
+                    </div>
             );
         }
     });
 
-    ReactDOM.render(<PolyhedronsComponent/>, document.getElementById('todoApp'));
+    ReactDOM.render(<Todo/>, document.getElementById('todoApp'));
 
 </script>
 
