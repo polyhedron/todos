@@ -29,9 +29,6 @@
             }
         },
         edit: function(){
-            //var todoText = this.refs.todoTextArea.value;
-            //console.log(todoText);
-
             this.setState({
                 editing: true
             });
@@ -74,14 +71,31 @@
         }
     });
 
-    ReactDOM.render(
-            <div className="row">
-                <Todo>Get Milk</Todo>
-                <Todo>Get Bread</Todo>
-                <Todo>Get Eggs</Todo>
-            </div>,
-            document.getElementById('todoApp')
-    );
+    var TodoList = React.createClass({
+        getInitialState: function() {
+            return {
+                todos:[
+                  'Get Milk',
+                  'Get Yogurt',
+                  'Get Cereal'
+                ]
+            }
+        },
+        render: function(){
+            return(
+                    <div className="row todos">
+                        {
+                            this.state.todos.map(function(todoText, i){
+                                console.log(todoText);
+                                return (<Todo key={i}>{todoText}</Todo>);
+                            })
+                        }
+                    </div>
+            )
+        }
+    });
+
+    ReactDOM.render(<TodoList/>, document.getElementById('todoApp'));
 
 </script>
 
