@@ -29,11 +29,16 @@
             }
         },
         edit: function(){
+            //var todoText = this.refs.todoTextArea.value;
+            //console.log(todoText);
+
             this.setState({
                 editing: true
             });
         },
         save: function(){
+            var textAreaVal = this.refs.todoTextArea.value;
+            console.log(textAreaVal);
             this.setState({
                 editing: false
             })
@@ -54,7 +59,7 @@
         renderEdit: function(){
             return (
                     <div className="col-lg-4 border pb-2">
-                        <textarea className="form-control mt-1" defaultValue={this.props.children}></textarea>
+                        <textarea className="form-control mt-1" defaultValue={this.props.children} ref="todoTextArea"></textarea>
                         <hr/>
                         <button onClick={this.save} className="btn btn-success">Save</button>
                     </div>
