@@ -23,13 +23,25 @@
     // Uses bootstrap v4 styles
 
     var Todo = React.createClass({
+        getInitialState: function(){
+            return {
+                editing: false
+            }
+        },
         edit: function(){
-            alert('Edit Button Clicked');
+            this.setState({
+                editing: true
+            });
+        },
+        save: function(){
+            this.setState({
+                editing: false
+            })
         },
         delete:function(){
-            alert('Delete Button Clicked');
+            console.log('Delete Button Clicked');
         },
-        render: function() {
+        renderView: function(){
             return (
                     <div className="col-lg-4 border pb-2">
                         <div className="todoText mb-3 mt-2">{this.props.children}</div>
@@ -38,6 +50,22 @@
                         <button onClick={this.delete} className="btn btn-danger ml-1">Delete</button>
                     </div>
             );
+        },
+        renderEdit: function(){
+            return (
+                    <div className="col-lg-4 border pb-2">
+                        <textarea className="form-control mt-1" defaultValue={this.props.children}></textarea>
+                        <hr/>
+                        <button onClick={this.save} className="btn btn-success">Save</button>
+                    </div>
+            );
+        },
+        render: function() {
+            if(this.state.editing){
+                return this.renderEdit();
+            } else {
+                return this.renderView();
+            }
         }
     });
 
