@@ -83,9 +83,13 @@
 
             this.serverRequest = axios.get("ajax/todos.php")
                 .then(function(result) {
-                    axios.get("ajax/todos.php")
-                        .then(function(result) {
-
+                    axios.get(
+                        "ajax/todos.php",{
+                            params: {
+                                userID : 'bc9X'
+                            }
+                        }
+                    ).then(function(result) {
                             _this.setState({
                                 todos: result.data
                             });
