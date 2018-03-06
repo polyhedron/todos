@@ -14,9 +14,10 @@
 
 </div>
 
-<script src="https://fb.me/react-0.14.3.js"></script>
-<script src="https://fb.me/react-dom-0.14.3.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react-dom.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
 
 <script type="text/babel">
 
@@ -74,19 +75,30 @@
     var TodoList = React.createClass({
         getInitialState: function() {
             return {
-                todos:[
-                  'Get Milk',
-                  'Get Yogurt',
-                  'Get Cereal'
-                ]
+                todos: []
             }
+        },
+        componentDidMount: function(){
+            var _this = this;
+
+            this.serverRequest = axios.get("ajax/todos.php")
+                .then(function(result) {
+                    axios.get("ajax/todos.php")
+                        .then(function(result) {
+
+                            _this.setState({
+                                todos: result.data
+                            });
+
+                        });
+                });
+
         },
         render: function(){
             return(
                     <div className="row todos">
                         {
                             this.state.todos.map(function(todoText, i){
-                                console.log(todoText);
                                 return (<Todo key={i}>{todoText}</Todo>);
                             })
                         }
