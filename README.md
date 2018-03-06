@@ -6,6 +6,7 @@ My todo app is a React based todo application that uses ajax to request and upda
   - Ajax enabled
   - Maria DB
   - PHP encoding of JSON data
+  - Bootstrap for css layout
 
 # About the todos app!
 
