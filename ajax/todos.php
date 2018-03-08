@@ -12,14 +12,19 @@ $dbh = new PDO('mysql:host=localhost;dbname=todos', $username, $password);
     die();
 }
 
-$stmt = $dbh->prepare("SELECT text FROM todos where userID = ?");
+$stmt = $dbh->prepare("SELECT * FROM todos where userID = ?");
 
 
 $todos = array();
 if ($stmt->execute(array($_GET['userID']))) {
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $todos[] = $row['text'];
+
+        $todo = array();
+        $todo['todoID'] = $row['todoID'];
+        $todo['text'] = $row['text'];
+
+        $todos[] = $todo;
     }
 }
 
