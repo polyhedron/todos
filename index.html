@@ -45,8 +45,6 @@
             console.log('Delete Button Clicked');
         },
         renderView: function(){
-            console.log('renderview this.props.children:');
-            console.log(this.props.children);
             return (
                     <div className="col-lg-4 border pb-2">
                         <div className="todoText mb-3 mt-2">{this.props.children.text}</div>
@@ -92,10 +90,16 @@
                             }
                         }
                     ).then(function(result) {
-                            console.log('componentdidmoutn ajax:');
-                            console.log(result.data);
+
+                        var inData = result.data;
+                        var setData = Array();
+
+                        inData.forEach(function(dataRow, index){
+                            setData[dataRow.todoID] = dataRow;
+                        });
+
                             _this.setState({
-                                todos: result.data
+                                todos: setData
                             });
 
                         });
@@ -107,7 +111,7 @@
                     <div className="row todos">
                         {
                             this.state.todos.map(function(todoText, i){
-                                return (<Todo key={i}>{todoText}</Todo>);
+                                return (<Todo key={i} index={i}>{todoText}</Todo>);
                             })
                         }
                     </div>
