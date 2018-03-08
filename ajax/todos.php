@@ -22,7 +22,7 @@ if ($stmt->execute(array($_GET['userID']))) {
 
         $todo = array();
         $todo['todoID'] = $row['todoID'];
-        $todo['text'] = $row['text'];
+        $todo['todoText'] = $row['todoText'];
 
         $todos[] = $todo;
     }

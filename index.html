@@ -47,7 +47,7 @@
         renderView: function(){
             return (
                     <div className="col-lg-4 border pb-2">
-                        <div className="todoText mb-3 mt-2">{this.props.children.text}</div>
+                        <div className="todoText mb-3 mt-2">{this.props.children}</div>
                         <hr/>
                         <button onClick={this.edit} className="btn btn-primary">Edit</button>
                         <button onClick={this.delete} className="btn btn-danger ml-1">Delete</button>
@@ -57,7 +57,7 @@
         renderEdit: function(){
             return (
                     <div className="col-lg-4 border pb-2">
-                        <textarea className="form-control mt-1" defaultValue={this.props.children.text} ref="todoTextArea"></textarea>
+                        <textarea className="form-control mt-1" defaultValue={this.props.children} ref="todoTextArea"></textarea>
                         <hr/>
                         <button onClick={this.save} className="btn btn-success">Save</button>
                     </div>
@@ -98,11 +98,11 @@
                             setData[dataRow.todoID] = dataRow;
                         });
 
-                            _this.setState({
-                                todos: setData
-                            });
-
+                        _this.setState({
+                            todos: setData
                         });
+
+                    });
                 });
 
         },
@@ -110,8 +110,10 @@
             return(
                     <div className="row todos">
                         {
-                            this.state.todos.map(function(todoText, i){
-                                return (<Todo key={i} index={i}>{todoText}</Todo>);
+                            this.state.todos.map(function(todoObj, i){
+                                return (<Todo key={i} index={todoObj.todoID}>
+                                            {todoObj.todoText}
+                                        </Todo>);
                             })
                         }
                     </div>
