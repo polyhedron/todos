@@ -106,16 +106,21 @@
                 });
 
         },
+        updateTodo: function(){
+            console.log('todolist:updateTodo called');
+            console.log('Index: ' + i);
+        },
+        makeTodo: function(todoObj, i){
+            return(
+                    <Todo key={i} index={todoObj.todoID} updateTodo={this.updateTodo}>
+                        {todoObj.todoText}
+                    </Todo>
+            );
+        },
         render: function(){
             return(
                     <div className="row todos">
-                        {
-                            this.state.todos.map(function(todoObj, i){
-                                return (<Todo key={i} index={todoObj.todoID}>
-                                            {todoObj.todoText}
-                                        </Todo>);
-                            })
-                        }
+                        {this.state.todos.map(this.makeTodo)}
                     </div>
             )
         }
