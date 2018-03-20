@@ -28,4 +28,5 @@ if ($stmt->execute(array($_GET['userID']))) {
     }
 }
 
+header("Access-Control-Allow-Origin: *");
 echo json_encode($todos);

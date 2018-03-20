@@ -40,9 +40,13 @@
             this.setState({
                 editing: false
             })
+            this.props.updateTodo(this.props.index);
         },
         delete:function(){
             console.log('Delete Button Clicked');
+
+            this.props.removeTodo(this.props.index);
+
         },
         renderView: function(){
             return (
@@ -106,27 +110,74 @@
                 });
 
         },
-        updateTodo: function(){
+        updateTodo: function(i, text){
             console.log('todolist:updateTodo called');
-            console.log('Index: ' + i);
+            console.log('Index: ');
+            console.log(i);
+        },
+        removeTodo: function(index){
+            console.log('Remove Index: ');
+            console.log(index);
+
+            var arr = [];
+
+            this.state.todos.forEach(function(todo){
+
+                if(todo.todoID != index){
+
+                   arr.push(todo);
+                }
+
+            });
+
+            console.log(arr);
+            this.setState({
+                todos: arr
+            });
+
         },
         makeTodo: function(todoObj, i){
             return(
-                    <Todo key={i} index={todoObj.todoID} updateTodo={this.updateTodo}>
+                    <Todo key={i} index={todoObj.todoID} updateTodo={this.updateTodo} removeTodo={this.removeTodo}>
                         {todoObj.todoText}
                     </Todo>
             );
         },
+        addTodo: function(){
+            console.log('Making todo: ');
+            var arr = this.state.todos;
+            var newTodo = {
+                todoID: 999,
+                userID: 'bc9X',
+                todoText: 'Edit and Save for new'
+            };
+            arr.push(newTodo);
+            console.log(arr);
+            this.setState({
+                todos: arr
+            });
+        },
         render: function(){
             return(
-                    <div className="row todos">
-                        {this.state.todos.map(this.makeTodo)}
+                    <div>
+                        <div className="row">
+                            <div className="col-lg-12 text-right">
+                                <button className="btn btn-success" onClick={this.addTodo}>Make Todo</button>
+                            </div>
+
+                        </div>
+                        <hr/>
+                        <div className="row todos">
+                            {this.state.todos.map(this.makeTodo)}
+                        </div>
                     </div>
             )
         }
     });
 
-    ReactDOM.render(<TodoList/>, document.getElementById('todoApp'));
+    ReactDOM.render(
+            <TodoList/>
+        , document.getElementById('todoApp'));
 
 </script>
 
